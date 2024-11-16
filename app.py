@@ -16,7 +16,7 @@ from utils import (
     translations,
 )
 
-st.set_page_config(page_title="Mineo", page_icon="🤖")
+st.set_page_config(page_title="AgriBot", page_icon="🤖")
 
 # Initialize floating features for the interface
 float_init()

@@ -25,7 +25,7 @@ model = genai.GenerativeModel(
 
 translations = {
     "en": {
-        "title": "Your AI Mining Assistant",
+        "title": "Your Partner in the Field 🌾",
         "tts_on": "📢 ON",
         "tts_off": "📢 OFF",
         "tts_tooltip": "Toggle Text-to-Speech",
@@ -38,7 +38,7 @@ translations = {
         "assistant_first": "Hi! How may I assist you today?",
     },
     "hi": {
-        "title": "आपका AI खनन सहायक",
+        "title": "खेत में आपका साथी",
         "tts_on": "📢 चालू",
         "tts_off": "📢 बंद",
         "tts_tooltip": "टेक्स्ट-टू-स्पीच टॉगल करें",
@@ -51,7 +51,7 @@ translations = {
         "assistant_first": "नमस्ते! मैं आज आपकी किस तरह से मदद कर सकता हूँ?",
     },
     "mr": {
-        "title": "आपला AI खाण सहाय्यक",
+        "title": "शेतात तुमचा साथीदार 🌾",
         "tts_on": "📢 चालू",
         "tts_off": "📢 बंद",
         "tts_tooltip": "टेक्स्ट-टू-स्पीच टॉगल करा",
@@ -91,7 +91,7 @@ def speech_to_text(audio_data):
 def image_detection(image_file):
     try:
         image_file = genai.upload_file(path=image_file)
-        prompt = "You are an AI model specialized in detecting and analyzing environmental impact, safety concerns, and structural conditions in coal mining operations through image analysis. Your goal is to provide detailed assessments based on images of mining equipment, site conditions, and emissions-related visuals submitted by users. If the image is unclear, does not contain relevant mining elements, or is unsuitable for analysis, politely inform the user and request a clearer or more relevant image. Always prioritize safety and environmental concerns, offering suggestions to reduce emissions or improve site conditions when applicable. Format your response in JSON, including fields for 'area_of_concern', 'emission_level', and 'recommendations'."
+        prompt = "You are an AI model designed to assist users in identifying crop diseases through image analysis. Your primary goal is to provide accurate assessments based on the images of plants submitted by users. If the image is unclear, does not contain plants, or is not suitable for analysis, you will politely inform the user and request a clearer or more relevant image. Always prioritize user education by providing helpful information about common crop diseases and prevention methods. Format your response in JSON, including fields for 'crop_name', 'disease_name', and 'prevention'."
         response = model.generate_content([prompt, image_file]).text
         genai.delete_file(image_file.name)
         res = json.loads(response)
@@ -114,7 +114,7 @@ def text_to_speech(input_text, lang_code, file_name):
 
 
 def get_answer(history, messages):
-    system_message = "You are an ex coal mine executive and environmentalist with years of immense experience in coal mining and related activities. You have a good knowledge about different mining activities and various types of emissions. You are specialized in extracting different types of coal, reducing and tracking emissions. Use all this knowledge of yours to answer the following question. Ensure that all responses are relevant to mining and emissions, avoiding unrelated information. Format your response in JSON, including fields for 'response_text', 'language_code', and 'context_on_chat'."
+    system_message = "You are an expert agricultural chatbot. Provide comprehensive and informative responses to farmer queries related to agriculture, crop management, soil health, weather, pests, diseases, and more. Maintain history on prompts. Ensure all responses are relevant to agriculture and avoid providing unrelated information. Format your response in JSON, including fields for 'response_text', 'language_code', 'context_on_chat'."
     messages = (
         system_message + "; Previous talks: " + history + "; Prompt: " + messages + ";"
     )
